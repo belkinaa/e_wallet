@@ -8,4 +8,5 @@ class UserAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'name', 'email')
     search_fields = ['name', 'email']
 
+
 admin.site.register(User, UserAdmin)

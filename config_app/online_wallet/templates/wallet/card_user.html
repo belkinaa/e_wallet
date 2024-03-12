@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Карточка пользователя</title>
+</head>
+<body>
+Карточка пользователя {{ email }}
+<form action="/card_users/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Получить">
+</form>
+
+{% for item in walets %}
+    <div style="flex-direction: column; padding: 10px">
+        <div style="display: flex; padding: 3px">
+            <div>Валюта:</div> <div> {{ item.currency }}</div>
+        </div>
+        <div style="display: flex; padding: 3px">
+            <div>Баланс:</div><div>{{ item.balance }}</div>
+        </div>
+    </div>
+{% endfor %}
+{% if not walets %}
+ <div style="display: flex; padding: 3px">
+    У пользователя {{ email }} нет кошелька
+ </div>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+.parent_div {
+   display: flex;
+   flex-direction: column;
+   padding: 10px
+}
+
+.item_parent_div {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 3px
+    color: red;
+    width: 30%
+}
+
+.child_item_parent_div {
+    display: flex;
+    padding-left: 5px
+    color: blue;
+    width: 40%;
+    height: 40%;
+}
+
+

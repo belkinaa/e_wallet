@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Карточка кошельков{% endblock title %}
+
+{% block content %}
+
+
+{% if walet%}
+<div class="parent_div">
+    <div class="item_parent_div">
+        <div class="child_item_parent_div"> Карточка кошелька #</div>
+        <div class="child_item_parent_div"> {{ walet.id }}</div>
+    </div>
+    <div class="item_parent_div">
+        <div class="child_item_parent_div"> Владелец: </div>
+        <div class="child_item_parent_div"> {{ walet.owner }}</div>
+    </div>
+    <div class="item_parent_div">
+        <div class="child_item_parent_div"> Баланс: </div>
+        <div class="child_item_parent_div"> {{ walet.balance }}</div>
+    </div>
+</div>
+
+{% endif %}
+
+<form action="/card_wallet/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Получить">
+</form>
+<br>
+{% for item in walets %}
+    <div style="flex-direction: column; padding: 10px">
+        <div style="display: flex; padding: 3px">
+            <div>Валюта:</div> <div> {{ item.currency }}</div>
+        </div>
+        <div style="display: flex; padding: 3px">
+            <div>Баланс:</div><div>{{ item.balance }}</div>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock content %}

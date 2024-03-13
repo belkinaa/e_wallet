@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Карточка пользователя</title>
-</head>
-<body>
-Карточка пользователя {{ email }}
+{% extends 'base.html' %}
+{% block title %}Карточка пользователя{% endblock title %}
+
+{% block content %}
+{% if email %}
+<div class="parent_div">
+    Карточка пользователя {{ email }}
+</div>
+{% endif %}
 <form action="/card_users/" method="post">
     {% csrf_token %}
     {{ form }}
@@ -13,19 +14,22 @@
 </form>
 
 {% for item in walets %}
-    <div style="flex-direction: column; padding: 10px">
-        <div style="display: flex; padding: 3px">
-            <div>Валюта:</div> <div> {{ item.currency }}</div>
+    <div class="parent_div">
+        <div class="item_parent_div">
+            <div class="child_item_parent_div">Валюта:</div>
+            <div class="child_item_parent_div"> {{ item.currency }}</div>
         </div>
-        <div style="display: flex; padding: 3px">
-            <div>Баланс:</div><div>{{ item.balance }}</div>
+        <div class="item_parent_div">
+            <div class="child_item_parent_div">Баланс:</div>
+            <div class="child_item_parent_div">{{ item.balance }}</div>
         </div>
     </div>
 {% endfor %}
-{% if not walets %}
- <div style="display: flex; padding: 3px">
+
+{% if not walets and email %}
+  <div class="parent_div">
     У пользователя {{ email }} нет кошелька
  </div>
 {% endif %}
-</body>
-</html>
+
+{% endblock content %}
